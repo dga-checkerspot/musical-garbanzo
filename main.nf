@@ -34,7 +34,7 @@ process samtools1 {
 	
 	"""
 
-	gunzip $samalign; samtools fastq -n -f 4 aln.sam > clean1.tst.fastq
+	gunzip -f $samalign; samtools fastq -n -f 4 aln.sam > clean1.tst.fastq
 	
 	"""
 
@@ -84,7 +84,7 @@ process samtools12 {
 	
 	"""
 
-	gunzip $samalign ; samtools fastq -n -f 4 align.sam > clean1.tst.fastq
+	gunzip -f $samalign ; samtools fastq -n -f 4 align.sam > clean1.tst.fastq
 	
 	"""
 
