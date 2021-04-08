@@ -1,0 +1,42 @@
+Apr-07 17:03:48.157 [main] DEBUG nextflow.cli.Launcher - $> nextflow main.nf -with-docker
+Apr-07 17:03:48.214 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 20.10.0
+Apr-07 17:03:48.234 [main] INFO  nextflow.cli.CmdRun - Launching `main.nf` [wise_wilson] - revision: 0d62d860fa
+Apr-07 17:03:48.261 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/danielgates/Desktop/NextflowTesting/nextflow.config
+Apr-07 17:03:48.262 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/danielgates/Desktop/NextflowTesting/nextflow.config
+Apr-07 17:03:48.279 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Apr-07 17:03:48.783 [main] DEBUG nextflow.config.ConfigBuilder - Enabling execution in Docker container as requested by cli option `-with-docker -`
+Apr-07 17:03:48.831 [main] DEBUG nextflow.Session - Session uuid: 39e9a383-06aa-4d5b-91be-8be473a991ce
+Apr-07 17:03:48.832 [main] DEBUG nextflow.Session - Run name: wise_wilson
+Apr-07 17:03:48.832 [main] DEBUG nextflow.Session - Executor pool size: 16
+Apr-07 17:03:49.059 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 20.10.0 build 5430
+  Created: 01-11-2020 15:14 UTC (07:14 PDT)
+  System: Mac OS X 10.16
+  Runtime: Groovy 3.0.5 on OpenJDK 64-Bit Server VM 11.0.8+10-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 97388@DGATES0066M.local [127.0.0.1]
+  CPUs: 16 - Mem: 64 GB (642.6 MB) - Swap: 3 GB (1.6 GB)
+Apr-07 17:03:49.077 [main] DEBUG nextflow.Session - Work-dir: /Users/danielgates/Desktop/NextflowTesting/work [Mac OS X]
+Apr-07 17:03:49.078 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/danielgates/Desktop/NextflowTesting/bin
+Apr-07 17:03:49.128 [main] DEBUG nextflow.Session - Observer factory: TowerFactory
+Apr-07 17:03:49.130 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Apr-07 17:03:49.270 [main] DEBUG nextflow.Session - Session start invoked
+Apr-07 17:03:49.704 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-07 17:03:49.710 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: minimapS31
+Apr-07 17:03:49.712 [main] DEBUG nextflow.Session - Session aborted -- Cause: No such property: contam for class: Script_06725133
+Possible solutions: config
+Apr-07 17:03:49.727 [main] ERROR nextflow.cli.Launcher - @unknown
+groovy.lang.MissingPropertyException: No such property: contam for class: Script_06725133
+Possible solutions: config
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:65)
+	at org.codehaus.groovy.runtime.callsite.PogoGetPropertySite.getProperty(PogoGetPropertySite.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGroovyObjectGetProperty(AbstractCallSite.java:341)
+	at Script_06725133.runScript(Script_06725133:3)
+	at nextflow.script.BaseScript.runDsl1(BaseScript.groovy:164)
+	at nextflow.script.BaseScript.run(BaseScript.groovy:200)
+	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:219)
+	at nextflow.script.ScriptRunner.run(ScriptRunner.groovy:219)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:127)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:277)
+	at nextflow.cli.Launcher.run(Launcher.groovy:466)
+	at nextflow.cli.Launcher.main(Launcher.groovy:648)

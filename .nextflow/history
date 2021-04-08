@@ -1,0 +1,4 @@
+2021-04-07 17:03:49	-	wise_wilson	-	0d62d860fa7ec495359d64044962a579	39e9a383-06aa-4d5b-91be-8be473a991ce	nextflow main.nf -with-docker
+2021-04-07 17:05:04	-	shrivelled_kimura	-	8c78716f56cbf4e812ed1b17aaab98e6	e8da7787-50f3-4519-9cc6-f0234ee78a5b	nextflow main.nf -with-docker
+2021-04-07 17:05:53	-	peaceful_tuckerman	-	3f2284ce5d7c0c75bfa05ea268789445	7e92a884-29dd-48aa-b87f-b59aa098dfd4	nextflow main.nf -with-docker
+2021-04-07 17:07:22	-	golden_austin	-	5fd641aed44c9f8e15ef5f9643dc7f8e	c36eb7ad-3559-4c1c-ac37-3adc32b24f2e	nextflow main.nf -with-docker
