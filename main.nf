@@ -94,13 +94,13 @@ process samtools12 {
 process cutadapt12 {
 	
 	input:
-	val 'cleanfas' from cleanReads12
+	path 'cleanfas' from cleanReads12
 	
 	output:
 	file 'R2.fastq' into reads12
 	
 	"""
-	cutadapt --rename='{id}/1' cleanfas.fasta -j 7 -o R2.fastq
+	cutadapt --rename='{id}/1' $cleanfas -j 7 -o R2.fastq
 	"""
 
 }
