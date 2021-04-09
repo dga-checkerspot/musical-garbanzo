@@ -105,8 +105,41 @@ process cutadapt12 {
 
 }
 
+process fastqpair {
+
+	input:
+	path 'R1fastq' from reads1
+	path 'R2fastq' from reads12
+
+	output:
+	file 'R1.fastq.paired.fq' into pairR1
+	file 'R2.fastq.paired.fq' into pairR2
+	file 'R1.fastq.single.fq' into pairR3
+	file 'R2.fastq.single.fq' into pairR4
+
+	"""
+	fastq_pair -t 10000000 $R1fastq $R2fastq
+	"""
+
+}
 
 
+process Trimmomatic {
+
+	input:
+	path 'R1pair' from pairR1
+	path 'R2pair' from pairR2
+
+
+	output:
+	file 'R1p.fq' into readTrim1
+	file 'R1p.fq' into readTrim2
+
+	"""
+	trimmomatic PE -threads 12 $R1pair $R2pair R1p.fq R1up.fq R2p.fq R2up.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:20"
+	"""
+
+}
 
 
 
