@@ -112,10 +112,10 @@ process fastqpair {
 	path 'R2fastq' from reads12
 
 	output:
-	file 'R1.fastq.paired.fq' into pairR1
-	file 'R2.fastq.paired.fq' into pairR2
-	file 'R1.fastq.single.fq' into pairR3
-	file 'R2.fastq.single.fq' into pairR4
+	file 'R1fastq.paired.fq' into pairR1
+	file 'R2fastq.paired.fq' into pairR2
+	file 'R1fastq.single.fq' into pairR3
+	file 'R2fastq.single.fq' into pairR4
 
 	"""
 	fastq_pair -t 10000000 $R1fastq $R2fastq
