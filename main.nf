@@ -129,6 +129,7 @@ process Trimmomatic {
 	input:
 	path 'R1pair' from pairR1
 	path 'R2pair' from pairR2
+	path 'adapt' from adapters
 
 
 	output:
@@ -136,7 +137,7 @@ process Trimmomatic {
 	file 'R1p.fq' into readTrim2
 
 	"""
-	trimmomatic PE -threads 12 $R1pair $R2pair R1p.fq R1up.fq R2p.fq R2up.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:20"
+	trimmomatic PE -threads 12 $R1pair $R2pair R1p.fq R1up.fq R2p.fq R2up.fq ILLUMINACLIP:$adapt:2:30:10 SLIDINGWINDOW:4:20
 	"""
 
 }
