@@ -163,13 +163,13 @@ ReadTrimNorm1.into{ReadTrimNormSpades; ReadTrimNormTrinity}
 process SpadeAssemble {
 
         input:
-        path 'R12int' from ReadTrimNormSpades
+        path R12Int from ReadTrimNormSpades
         
         output:
         file 'hard_filtered_transcripts.fasta' into Spades
 
 	"""
-	rnaspades.py  --pe1-12 R12int  -o spades_output 
+	rnaspades.py  --pe1-12 $R12Int  -o spades_output 
 	cp ./spades_output/hard_filtered_transcripts.fasta .
 	"""
 }
@@ -189,7 +189,8 @@ process pairInt {
 	file 'R2reads.fastq' into R2Tofastq
 
 	"""
-	$pairInt < $Intpair R1reads.fastq R2reads.fastq
+	chmod 744 $pairInt
+	./$pairInt < $Intpair R1reads.fastq R2reads.fastq
 	"""
 
 }
