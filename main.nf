@@ -6,7 +6,8 @@ sequences12='s3://transcriptome.seeds.genewiz.rawdata/LO1_R2_001.fastq.gz'
 sequences2='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 sequences22='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 adapters='s3://transcriptomepipeline/TruSeq3-PE.fa'
-	
+pairInt='s3://transcriptomepipeline/PairInterleaves.sh'
+
 process minimapS31 {
 	input:
 	path fastq from sequences1
@@ -175,5 +176,56 @@ process SpadeAssemble {
 
 
 
+
+
+process pairInt {
+
+	input:
+	path 'pairInt' from pairInt
+	path 'Intpair' from ReadTrimNormTrinity
+
+	output:
+	file 'R1reads.fastq' into R1Tofastq
+	file 'R2reads.fastq' into R2Tofastq
+
+	"""
+	$pairInt < $Intpair R1reads.fastq R2reads.fastq
+	"""
+
+}
+
+
+process fastqpair2 {
+
+	input:
+	path 'R1p' from R1Tofastq
+	path 'R2p' from R2Tofastq
+
+	output:
+	file 'R1reads.fastq.paired.fq' into pairR1T
+	file 'R2reads.fastq.paired.fq' into pairR2T
+	//For now not even bothering with unpaired
+
+	"""
+	fastq_pair -t 10000000 $R1p $R2p
+	"""
+}
+
+process TrinityAssemble {
+
+	input:
+	path 'R1pair' from pairR1T
+	path 'R2pair' from pairR2T
+
+	output:
+	file 'Trinity.fasta' into Trinity
+
+
+	"""
+	Trinity --seqType fq --left $R1pair --right $R2pair --output trinity_output
+	cp ./trinity_output/Trinity.fasta .
+	"""
+
+}
 
 
