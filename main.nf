@@ -144,7 +144,34 @@ process Trimmomatic {
 
 
 
+process bbnorm {
+        input:
+        path 'seq1' from readTrim1
+        path 'seq2' from readTrim2
+        
+        output:
+        file 'mid.fq' into ReadTrimNorm1
 
+	"""
+	bbnorm.sh in=$seq1 in2=$seq2 outlow=low.fq outmid=mid.fq outhigh=high.fq passes=1 lowbindepth=6 highbindepth=60 -Xmx15g
+	"""
+}
+
+ReadTrimNorm1.into{ReadTrimNormSpades; ReadTrimNormTrinity}
+
+process SpadeAssemble {
+
+        input:
+        path 'R12int' from ReadTrimNormSpades
+        
+        output:
+        file 'hard_filtered_transcripts.fasta' into Spades
+
+	"""
+	rnaspades.py  --pe1-12 R12int  -o spades_output 
+	cp ./spades_output/hard_filtered_transcripts.fasta .
+	"""
+}
 
 
 
