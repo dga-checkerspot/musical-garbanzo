@@ -101,7 +101,7 @@ process cutadapt12 {
 	file 'R2.fastq' into reads12
 	
 	"""
-	cutadapt --rename='{id}/1' $cleanfas -j 7 -o R2.fastq
+	cutadapt --rename='{id}/2' $cleanfas -j 7 -o R2.fastq
 	"""
 
 }
@@ -158,31 +158,12 @@ process bbnorm {
 	"""
 }
 
-ReadTrimNorm1.into{ReadTrimNormSpades; ReadTrimNormTrinity}
-
-process SpadeAssemble {
-
-        input:
-        path R12Int from ReadTrimNormSpades
-        
-        output:
-        file 'hard_filtered_transcripts.fasta' into Spades
-
-	"""
-	rnaspades.py  --pe1-12 $R12Int  -o spades_output 
-	cp ./spades_output/hard_filtered_transcripts.fasta .
-	"""
-}
-
-
-
-
 
 process pairInt {
 
 	input:
 	path 'pairInt' from pairInt
-	path 'Intpair' from ReadTrimNormTrinity
+	path 'Intpair' from ReadTrimNorm1
 
 	output:
 	file 'R1reads.fastq' into R1Tofastq
@@ -199,8 +180,8 @@ process pairInt {
 process fastqpair2 {
 
 	input:
-	path 'R1p' from R1Tofastq
-	path 'R2p' from R2Tofastq
+	path R1p from R1Tofastq
+	path R2p from R2Tofastq
 
 	output:
 	file 'R1reads.fastq.paired.fq' into pairR1T
@@ -212,18 +193,39 @@ process fastqpair2 {
 	"""
 }
 
+pairR1T.into{P1NormSpades; P1NormTrinity}
+pairR2T.into{P2NormSpades; P2NormTrinity}
+
+process SpadeAssemble {
+
+        input:
+        path R1Norm from P1NormTrinity
+	path R2Norm from P2NormTrinity
+
+        //output:
+        //file 'hard_filtered_transcripts.fasta' into Spades
+
+        """
+        rnaspades.py  --pe1-1 $R1Norm --pe1-2 $R2Norm  -o spades_output
+        """
+}
+
+
+
+
 process TrinityAssemble {
 
 	input:
-	path 'R1pair' from pairR1T
-	path 'R2pair' from pairR2T
+	path R1pair from P1NormTrinity
+	path R2pair from P2NormTrinity
 
 	output:
 	file 'Trinity.fasta' into Trinity
 
 
 	"""
-	Trinity --seqType fq --left $R1pair --right $R2pair --output trinity_output
+	conda install tbb=2020.2
+	Trinity --seqType fq --left $R1pair --right $R2pair --max_memory 30G --output trinity_output
 	cp ./trinity_output/Trinity.fasta .
 	"""
 
