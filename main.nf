@@ -199,8 +199,8 @@ pairR2T.into{P2NormSpades; P2NormTrinity}
 process SpadeAssemble {
 
         input:
-        path R1Norm from P1NormTrinity
-	path R2Norm from P2NormTrinity
+        path R1Norm from P1NormSpades
+	path R2Norm from P2NormSpades
 
         //output:
         //file 'hard_filtered_transcripts.fasta' into Spades
