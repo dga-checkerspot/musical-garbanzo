@@ -135,7 +135,7 @@ process Trimmomatic {
 
 	output:
 	file 'R1p.fq' into readTrim1
-	file 'R1p.fq' into readTrim2
+	file 'R2p.fq' into readTrim2
 
 	"""
 	trimmomatic PE -threads 12 $R1pair $R2pair R1p.fq R1up.fq R2p.fq R2up.fq ILLUMINACLIP:$adapt:2:30:10 SLIDINGWINDOW:4:20
