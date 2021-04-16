@@ -147,8 +147,8 @@ process Trimmomatic {
 
 process bbnorm {
         input:
-        path 'seq1' from readTrim1
-        path 'seq2' from readTrim2
+        path seq1 from readTrim1
+        path seq2 from readTrim2
         
         output:
         file 'mid.fq' into ReadTrimNorm1
