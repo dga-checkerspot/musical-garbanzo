@@ -1,8 +1,8 @@
 #!/usr/bin/env nextflow
 
 
-sequences1='s3://wheattranscriptome/R1.fq.gz'
-sequences12='s3://wheattranscriptome/R2.fq.gz'
+sequences1='s3://transcriptome.seeds.genewiz.rawdata/MB1_R1.fastq.gz'
+sequences12='s3://transcriptome.seeds.genewiz.rawdata/MB1_R2.fastq.gz'
 sequences2='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 sequences22='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 adapters='s3://transcriptomepipeline/TruSeq3-PE.fa'
