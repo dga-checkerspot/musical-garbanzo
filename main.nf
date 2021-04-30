@@ -225,7 +225,7 @@ process TrinityAssemble {
 
 	"""
 	conda install tbb=2020.2
-	Trinity --seqType fq --left $R1pair --right $R2pair --max_memory 30G --output trinity_output
+	Trinity --seqType fq --left $R1pair --right $R2pair --max_memory 56G --output trinity_output
 	cp ./trinity_output/Trinity.fasta .
 	"""
 
