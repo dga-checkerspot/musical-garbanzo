@@ -9,6 +9,8 @@ adapters='s3://transcriptomepipeline/TruSeq3-PE.fa'
 pairInt='s3://transcriptomepipeline/PairInterleaves.sh'
 
 process minimapS31 {
+
+	memory '8G'
 	input:
 	path fastq from sequences1
 	path contam from sequences2
@@ -26,6 +28,8 @@ process minimapS31 {
 
 
 process samtools1 {
+
+	memory '8G'
 	
 	input:
 	path samalign from align
@@ -59,6 +63,9 @@ process cutadapt1 {
 //Second  pair
 
 process minimapS32 {
+
+	memory '8G'
+	
 	input:
 	path fastq from sequences12
 	path contam from sequences22
@@ -76,6 +83,8 @@ process minimapS32 {
 
 
 process samtools12 {
+
+	memory '8G'
 	
 	input:
 	path samalign from align2
@@ -146,6 +155,9 @@ process Trimmomatic {
 
 
 process bbnorm {
+
+	memory '16G'
+	
         input:
         path seq1 from readTrim1
         path seq2 from readTrim2
@@ -215,6 +227,8 @@ process SpadeAssemble {
 
 process TrinityAssemble {
 
+	memory '56G'
+
 	input:
 	path R1pair from P1NormTrinity
 	path R2pair from P2NormTrinity
@@ -225,7 +239,7 @@ process TrinityAssemble {
 
 	"""
 	conda install tbb=2020.2
-	Trinity --seqType fq --left $R1pair --right $R2pair --max_memory 56G --output trinity_output
+	Trinity --seqType fq --left $R1pair --right $R2pair --max_memory 54G --output trinity_output
 	cp ./trinity_output/Trinity.fasta .
 	"""
 
