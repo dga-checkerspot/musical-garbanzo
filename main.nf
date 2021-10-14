@@ -10,7 +10,7 @@ pairInt='s3://transcriptomepipeline/PairInterleaves.sh'
 
 process minimapS31 {
 
-	memory '8G'
+	memory '16G'
 	input:
 	path fastq from sequences1
 	path contam from sequences2
@@ -29,7 +29,7 @@ process minimapS31 {
 
 process samtools1 {
 
-	memory '8G'
+	memory '16G'
 	
 	input:
 	path samalign from align
@@ -64,7 +64,7 @@ process cutadapt1 {
 
 process minimapS32 {
 
-	memory '8G'
+	memory '16G'
 	
 	input:
 	path fastq from sequences12
@@ -84,7 +84,7 @@ process minimapS32 {
 
 process samtools12 {
 
-	memory '8G'
+	memory '16G'
 	
 	input:
 	path samalign from align2
