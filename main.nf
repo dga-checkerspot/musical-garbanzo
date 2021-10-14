@@ -1,8 +1,8 @@
 #!/usr/bin/env nextflow
 
 
-sequences1='s3://transcriptome.seeds.genewiz.rawdata/MB1_R1_001.fastq.gz'
-sequences12='s3://transcriptome.seeds.genewiz.rawdata/MB1_R2_001.fastq.gz'
+sequences1='s3://transcriptomepipeline/Physaria_Lind_R1.fastq.gz'
+sequences12='s3://transcriptomepipeline/Physaria_Lind_R2.fastq.gz'
 sequences2='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 sequences22='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 adapters='s3://transcriptomepipeline/TruSeq3-PE.fa'
@@ -154,7 +154,7 @@ process bbnorm {
         file 'mid.fq' into ReadTrimNorm1
 
 	"""
-	bbnorm.sh in=$seq1 in2=$seq2 outlow=low.fq outmid=mid.fq outhigh=high.fq passes=1 lowbindepth=6 highbindepth=60 -Xmx15g
+	bbnorm.sh in=$seq1 in2=$seq2 outlow=low.fq outmid=mid.fq outhigh=high.fq passes=1 lowbindepth=6 highbindepth=120 -Xmx15g
 	"""
 }
 
