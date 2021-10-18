@@ -7,7 +7,7 @@ sequences2='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 sequences22='s3://transcriptomepipeline/ContaminantsForRemove.fasta'
 adapters='s3://transcriptomepipeline/TruSeq3-PE.fa'
 pairInt='s3://transcriptomepipeline/PairInterleaves.sh'
-
+\*
 process minimapS31 {
 
 	memory '16G'
@@ -207,8 +207,14 @@ process fastqpair2 {
 
 pairR1T.into{P1NormSpades; P1NormTrinity}
 pairR2T.into{P2NormSpades; P2NormTrinity}
+*\
+
+sequences1.into{P1NormSpades; P1NormTrinity}
+sequences12.into{P2NormSpades; P2NormTrinity}
 
 process SpadeAssemble {
+	
+	memory '56G'
 
         input:
         path R1Norm from P1NormSpades
@@ -227,7 +233,7 @@ process SpadeAssemble {
 
 process TrinityAssemble {
 
-	memory '56G'
+	memory '96G'
 
 	input:
 	path R1pair from P1NormTrinity
