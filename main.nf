@@ -134,6 +134,7 @@ process fastqpair {
 }
 
 
+
 process Trimmomatic {
 
 	input:
@@ -152,21 +153,24 @@ process Trimmomatic {
 
 }
 
+*/
 
+sequencedataset1= Channel.fromPath(sequences1)
+sequencedataset2= Channel.fromPath(sequences12)
 
 process bbnorm {
 
-	memory '16G'
+	memory '64G'
 	
         input:
-        path seq1 from readTrim1
-        path seq2 from readTrim2
+        path seq1 from sequencedataset1
+        path seq2 from sequencedataset2
         
         output:
         file 'mid.fq' into ReadTrimNorm1
 
 	"""
-	bbnorm.sh in=$seq1 in2=$seq2 outlow=low.fq outmid=mid.fq outhigh=high.fq passes=1 lowbindepth=6 highbindepth=120 -Xmx15g
+	bbnorm.sh in=$seq1 in2=$seq2 outlow=low.fq outmid=mid.fq outhigh=high.fq passes=1 lowbindepth=6 highbindepth=150 -Xmx62g
 	"""
 }
 
@@ -207,13 +211,11 @@ process fastqpair2 {
 
 pairR1T.into{P1NormSpades; P1NormTrinity}
 pairR2T.into{P2NormSpades; P2NormTrinity}
-*/
 
-sequencedataset1= Channel.fromPath(sequences1)
-sequencedataset2= Channel.fromPath(sequences12)
 
-sequencedataset1.into{P1NormSpades; P1NormTrinity}
-sequencedataset2.into{P2NormSpades; P2NormTrinity}
+
+//sequencedataset1.into{P1NormSpades; P1NormTrinity}
+//sequencedataset2.into{P2NormSpades; P2NormTrinity}
 
 process SpadeAssemble {
 	
