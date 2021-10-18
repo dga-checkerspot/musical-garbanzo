@@ -232,7 +232,7 @@ process SpadeAssemble {
 }
 
 
-
+/*
 
 process TrinityAssemble {
 
@@ -254,4 +254,5 @@ process TrinityAssemble {
 
 }
 
+*/
 
