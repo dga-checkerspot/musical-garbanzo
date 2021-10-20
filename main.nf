@@ -215,8 +215,8 @@ pairR2T.into{P2NormSpades; P2NormTrinity}
 
 */
 
-sequencedataset1.into{P1NormSpades; P1NormTrinity}
-sequencedataset2.into{P2NormSpades; P2NormTrinity}
+sequences1.into{P1NormSpades; P1NormTrinity}
+sequences12.into{P2NormSpades; P2NormTrinity}
 
 process SpadeAssemble {
 	
