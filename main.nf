@@ -215,16 +215,16 @@ pairR2T.into{P2NormSpades; P2NormTrinity}
 
 */
 
-sequences1.into{P1NormSpades; P1NormTrinity}
-sequences12.into{P2NormSpades; P2NormTrinity}
+//sequences1.into{P1NormSpades; P1NormTrinity}
+//sequences12.into{P2NormSpades; P2NormTrinity}
 
 process SpadeAssemble {
 	
 	memory '56G'
 
         input:
-        path R1Norm from P1NormSpades
-	path R2Norm from P2NormSpades
+        path R1Norm from sequences1
+	path R2Norm from sequences12
 
         output:
         file '*.fasta' into Spades
