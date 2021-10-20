@@ -155,6 +155,7 @@ process Trimmomatic {
 
 */
 
+/*
 sequencedataset1= Channel.fromPath(sequences1)
 sequencedataset2= Channel.fromPath(sequences12)
 
@@ -212,10 +213,10 @@ process fastqpair2 {
 pairR1T.into{P1NormSpades; P1NormTrinity}
 pairR2T.into{P2NormSpades; P2NormTrinity}
 
+*/
 
-
-//sequencedataset1.into{P1NormSpades; P1NormTrinity}
-//sequencedataset2.into{P2NormSpades; P2NormTrinity}
+sequencedataset1.into{P1NormSpades; P1NormTrinity}
+sequencedataset2.into{P2NormSpades; P2NormTrinity}
 
 process SpadeAssemble {
 	
@@ -226,10 +227,11 @@ process SpadeAssemble {
 	path R2Norm from P2NormSpades
 
         output:
-        file './spades_output/hard_filtered_transcripts.fasta' into Spades
+        file '*.fasta' into Spades
 
         """
         rnaspades.py  --pe1-1 $R1Norm --pe1-2 $R2Norm  -o spades_output
+	cp ./spades_output/* .
         """
 }
 
